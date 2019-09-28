@@ -7,7 +7,19 @@
   "version": "0.0.1",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "dev:web": "yarn workspace @z2p/web start",
+    "dev:server": "yarn workspace @z2p/server dev",
+    "build:web": "yarn workspace @z2p/web build",
+    "build:server": "yarn workspace @z2p/server build",
+    "start:server": "yarn workspace @z2p/server start",
+    "build": "yarn build:server && yarn build:web",
+    "deploy": "yarn build && yarn start:server"
+  },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "devDependencies": {
+    "concurrently": "^4.1.2"
+  }
 }

@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "importHelpers": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "strict": true,
+    "target": "es2017",
+    "composite": true,
+    "esModuleInterop": true,
+    "baseUrl": ".",
+    "jsx": "react"
+  },
+  "include": ["packages/**/*"]
+}
