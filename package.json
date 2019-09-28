@@ -1,0 +1,13 @@
+{
+  "name": "@z2p/fullstack-monorepo",
+  "author": {
+    "name": "Giovanni Francischelli",
+    "email": "gifrancischelli@gmail.com"
+  },
+  "version": "0.0.1",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
+}
