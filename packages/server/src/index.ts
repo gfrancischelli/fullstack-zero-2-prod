@@ -1,13 +1,21 @@
+const dev = process.env.NODE_ENV !== "production";
+
+import dotenv from "dotenv-safe";
+if (dev) {
+  dotenv.config({ example: "./.env.dev.example" });
+} else {
+  dotenv.config({ path: "~/snitch.env" });
+}
+
 import Koa from "koa";
 import Router from "koa-router";
 import Static from "koa-static";
 import socketIo from "socket.io";
 import { createServer } from "http";
-// import redisAdapter from "socket.io-redis";
+import redisAdapter from "socket.io-redis";
+import { redisConfig } from "./config";
 
 const { PORT = 8080 } = process.env;
-
-const dev = process.env.NODE_ENV !== "production";
 
 const koa = new Koa();
 const router = new Router();
@@ -25,7 +33,12 @@ server.listen(Number(PORT), () =>
 );
 
 const io = socketIo(server);
-// io.adapter(redisAdapter({ host: "localhost", port: 6379 }));
+
+if (!dev) {
+  io.adapter(redisAdapter(redisConfig));
+} else {
+  io.adapter(redisAdapter());
+}
 
 let seconds = 0;
 setInterval(() => {
